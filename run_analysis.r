@@ -7,16 +7,16 @@
 
 
 ## Get the features (column names)
-features <- read.table("C:\\Coursera\\Getting and Cleaning data\\UCI HAR Dataset\\features.txt")
+features <- read.table("features.txt")
 col_names <- features[,2]
 
 ## Get the activity labels
-activity <- read.table("C:\\Coursera\\Getting and Cleaning data\\UCI HAR Dataset\\activity_labels.txt")
+activity <- read.table("activity_labels.txt")
 
 ## Get training data
-x_train <- read.table("C:\\Coursera\\Getting and Cleaning data\\UCI HAR Dataset\\train\\X_train.txt")
-y_train <- read.table("C:\\Coursera\\Getting and Cleaning data\\UCI HAR Dataset\\train\\y_train.txt")
-subject_train <- read.table("C:\\Coursera\\Getting and Cleaning data\\UCI HAR Dataset\\train\\subject_train.txt")
+x_train <- read.table("X_train.txt")
+y_train <- read.table("y_train.txt")
+subject_train <- read.table("subject_train.txt")
 names(subject_train) <- "Subject"
 
 ## Name the columns for X_train 
@@ -41,9 +41,9 @@ train_data <- cbind(subject_train,y_train, meansd_train)
 
 ## Get the test data
 
-x_test <- read.table("C:\\Coursera\\Getting and Cleaning data\\UCI HAR Dataset\\test\\X_test.txt")
-y_test <- read.table("C:\\Coursera\\Getting and Cleaning data\\UCI HAR Dataset\\test\\y_test.txt")
-subject_test <- read.table("C:\\Coursera\\Getting and Cleaning data\\UCI HAR Dataset\\test\\subject_test.txt")
+x_test <- read.table("X_test.txt")
+y_test <- read.table("y_test.txt")
+subject_test <- read.table("subject_test.txt")
 names(subject_test) <- "Subject"
 
 ## Name the columns for X_test
@@ -69,7 +69,7 @@ final_data <- rbind(train_data, test_data)
 ## Calculate average of each variable for each activity and each subject.
 average <- aggregate(final_data[,3:ncol(final_data)], by=list(final_data$Subject, final_data$Activity_labels), mean)
 names(average[1:2]) <- c("Subject", "Activity_labels")
-write.table(average, "C:\\Coursera\\Getting and Cleaning data\\UCI HAR Dataset\\tidy.txt") 
+write.table(average, "tidy.txt",row.name = FLASE) 
 
 
 
