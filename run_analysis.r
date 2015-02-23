@@ -68,8 +68,7 @@ final_data <- rbind(train_data, test_data)
 
 ## Calculate average of each variable for each activity and each subject.
 average <- aggregate(final_data[,3:ncol(final_data)], by=list(final_data$Subject, final_data$Activity_labels), mean)
-names(average[1:2]) <- c("Subject", "Activity_labels")
-write.table(average, "tidy.txt",row.name = FLASE) 
+write.table(average, "tidy.txt",row.name = FALSE) 
 
 
 
